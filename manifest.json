@@ -6,9 +6,9 @@
       "name": "Scan Indicator",
       "author": "corym",
       "description": "Displays scan-progress diamonds on battle portrait cards showing wiki knowledge level for each animon.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "filename": "ScanIndicator.dll",
-      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/ScanIndicator-v1.0.0/ScanIndicator.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/ScanIndicator-v1.0.1/ScanIndicator.dll",
       "changelog": "Initial release"
     }
   ]
