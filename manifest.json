@@ -28,6 +28,15 @@
       "version": "1.0.0",
       "fileName": "DualTypeHoloken.dll",
       "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/DualTypeHoloken-v1.0.0/DualTypeHoloken.dll"
+    },
+    {
+      "id": "evoscan",
+      "name": "EvoScan",
+      "author": "AegeanGryphon",
+      "description": "Automatically applies research level 3 to animon post-evolution without requiring them to be scanned in a battle.",
+      "version": "1.0.0",
+      "fileName": "EvoScan.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/EvoScan-v1.0.0/EvoScan.dll"
     }
   ]
 }
