@@ -11,5 +11,14 @@
       "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/ScanIndicator-v1.0.1/ScanIndicator.dll",
       "changelog": "Initial release"
     }
+    {
+  "id": "holoboardholoken",
+  "name": "HoloboardHoloken",
+  "author": "AegeanGryphon",
+  "description": "Allows throwing the holoken while riding the holoboard.",
+  "version": "1.0.0",
+  "fileName": "HoloboardHoloken.dll",
+  "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/HoloboardHoloken-v1.0.0/HoloboardHoloken.dll"
+    }
   ]
 }
