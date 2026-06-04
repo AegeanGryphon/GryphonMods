@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "mods": [
+    {
+      "id": "scan-indicator",
+      "name": "ScanIndicator",
+      "author": "AegeanGryphon",
+      "description": "Displays scan-progress diamonds on battle animon cards showing your wiki knowledge level at a glance — no need to open the wiki mid-battle.",
+      "version": "1.0.1",
+      "fileName": "ScanIndicator.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/ScanIndicator-v1.0.1/ScanIndicator.dll",
+      "changelog": "**v1.0.1** — Fixed diamond positioning on single-enemy battle cards."
+    },
+    {
+      "id": "holoboard-holoken",
+      "name": "HoloboardHoloken",
+      "author": "AegeanGryphon",
+      "description": "Allows you to throw your holoken while riding the holoboard. Stay mobile!",
+      "version": "1.0.0",
+      "fileName": "HoloboardHoloken.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/HoloboardHoloken-v1.0.0/HoloboardHoloken.dll",
+      "changelog": null
+    },
+    {
+      "id": "dual-type-holoken",
+      "name": "DualTypeHoloken",
+      "author": "AegeanGryphon",
+      "description": "Lets an animon's hidden secondary type activate matching elemental overworld objects, not just the primary type.",
+      "version": "1.0.0",
+      "fileName": "DualTypeHoloken.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/DualTypeHoloken-v1.0.0/DualTypeHoloken.dll",
+      "changelog": null
+    },
+    {
+      "id": "evo-scan",
+      "name": "EvoScan",
+      "author": "AegeanGryphon",
+      "description": "Automatically grants full research level 3 to an animon's evolved form when it evolves, so you never lose wiki data after evolution.",
+      "version": "1.0.0",
+      "fileName": "EvoScan.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/EvoScan-v1.0.0/EvoScan.dll",
+      "changelog": null
+    },
+    {
+      "id": "weather-wheel",
+      "name": "WeatherWheel",
+      "author": "AegeanGryphon",
+      "description": "Adds a radial weather selection wheel to the overworld. Press **C** (or right stick click on controller) to open, pick a weather, and it pins to the current map. Selecting Clear removes the pin and lets the game's natural weather resume.\n\nStory weather is detected and respected — the wheel will not override quest-set weather.",
+      "version": "1.0.0",
+      "fileName": "WeatherWheel.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/WeatherWheel-v1.0.0/WeatherWheel.dll",
+      "changelog": null
+    }
+  ]
+}
