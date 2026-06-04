@@ -1,7 +1,7 @@
 # GryphonMods
 Lumentale mods made by CrimsonGryphon.
 
-This repository contains a modded launcher for LumenTale: Memories of Trey and a growing collection of BepInEx mods.
+This repository contains a modded launcher for LumenTale: Memories of Trey and a growing collection of BepInEx mods. The launcher handles mod installation and updates automatically — no manual file management required.
 
 ## Requirements
 - [LumenTale: Memories of Trey](https://store.steampowered.com/app/2261430) (Steam)
@@ -9,11 +9,11 @@ This repository contains a modded launcher for LumenTale: Memories of Trey and a
 
 ## Installation
 
-1. Download **BepInEx** from this repo and extract the ZIP directly into your game folder:
+1. Download [**BepInEx_win_x64_6.0.0.755.zip**](https://github.com/AegeanGryphon/GryphonMods/releases/tag/BepInEx-v6.0.0.755) and extract the ZIP directly into your game folder:
    ```
    ..\steamapps\common\LumenTale Memories of Trey\
    ```
-2. Download **LumenTaleLauncher.zip** and extract it anywhere on your computer.
+2. Download [**LumenTaleLauncher.zip**](https://github.com/AegeanGryphon/GryphonMods/releases/tag/Launcher-v1.0.0) and extract it anywhere on your computer.
 3. Launch LumenTale once through Steam and let it fully load, then close it. This allows BepInEx to initialize.
 4. Open **LumenTaleLauncher.exe** from wherever you extracted it.
 
