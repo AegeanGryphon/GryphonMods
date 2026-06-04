@@ -37,6 +37,15 @@
       "version": "1.0.0",
       "fileName": "EvoScan.dll",
       "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/EvoScan-v1.0.0/EvoScan.dll"
+    },
+    {
+      "id": "weatherwheel",
+      "name": "WeatherWheel",
+      "author": "AegeanGryphon",
+      "description": "Allows player to manually change weather using radial menu.",
+      "version": "1.0.0",
+      "fileName": "WeatherWheel.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/WeatherWheel-v1.0.0/WeatherWheel.dll"
     }
   ]
 }
