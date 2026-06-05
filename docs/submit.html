@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit — GryphonMods</title>
+  <meta name="description" content="Report a bug or submit a mod idea for LumenTale: Memories of Trey."/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%238b6fff'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='18'>🦅</text></svg>"/>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────── -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-icon">🦅</div>
+      GryphonMods
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html"  class="nav__link" data-page="index.html">Home</a></li>
+      <li><a href="mods.html"   class="nav__link" data-page="mods.html">Mods</a></li>
+      <li><a href="submit.html" class="nav__link" data-page="submit.html">Submit</a></li>
+      <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a></li>
+    </ul>
+    <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="nav__cta" target="_blank" rel="noopener">
+      Download Launcher
+    </a>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html"  class="nav__link">Home</a>
+  <a href="mods.html"   class="nav__link">Mods</a>
+  <a href="submit.html" class="nav__link active">Submit</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="btn btn--primary" target="_blank" rel="noopener" style="margin-top:8px;">
+    Download Launcher
+  </a>
+</nav>
+
+<!-- ── Page Header ───────────────────────────────────────── -->
+<header class="page-header">
+  <div class="page-header__bg"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <p class="section-label">Community</p>
+    <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.2rem);">
+      Submit a <span class="gradient-text">bug report</span><br>or mod idea
+    </h1>
+    <p class="section-sub">
+      Found something broken? Have an idea for a new mod? Fill out the form below and
+      it'll go straight to the GitHub issue tracker.
+    </p>
+  </div>
+</header>
+
+<!-- ── Form ──────────────────────────────────────────────── -->
+<section class="section" style="padding-top:16px;">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 2fr; gap:48px; align-items:start;">
+
+      <!-- Sidebar info -->
+      <aside>
+        <div style="display:flex; flex-direction:column; gap:16px; position:sticky; top:calc(var(--nav-height) + 24px);">
+
+          <div class="feature-card reveal">
+            <div class="feature-icon">🐛</div>
+            <h3>Bug Reports</h3>
+            <p>Something broke after a patch? Unexpected behaviour? Crashes? Tell us what happened, what you expected, and what mods you have installed.</p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">💡</div>
+            <h3>Mod Ideas</h3>
+            <p>A QoL improvement, missing feature, or vanilla bug fix you'd love to see? Describe what you want and why it would improve the experience.</p>
+          </div>
+
+          <div class="feature-card reveal reveal-delay-2" style="border-color:rgba(251,191,36,0.2);">
+            <div class="feature-icon" style="background:rgba(251,191,36,0.08); border-color:rgba(251,191,36,0.2);">⚡</div>
+            <h3>Faster response?</h3>
+            <p>
+              Open an issue directly on
+              <a href="https://github.com/AegeanGryphon/GryphonMods/issues/new"
+                 target="_blank" rel="noopener"
+                 style="color:var(--accent-purple); text-decoration:underline; text-underline-offset:3px;">
+                GitHub
+              </a>
+              for the most direct line. You can attach screenshots and log files there too.
+            </p>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Form -->
+      <div class="reveal reveal-delay-1">
+        <div class="form-card">
+          <h2 style="font-family:'Outfit',sans-serif; font-size:1.4rem; font-weight:700; margin-bottom:6px;">
+            New Submission
+          </h2>
+          <p style="font-size:0.875rem; color:var(--text-secondary); margin-bottom:32px;">
+            All fields marked <span style="color:var(--accent-purple);">*</span> are required.
+            Submissions are sent to the GryphonMods GitHub issue tracker.
+          </p>
+
+          <!-- NOTE: Replace the action URL with your Formspree form ID after signing up at formspree.io -->
+          <form id="contact-form" action="https://formspree.io/f/mqeoepwn" method="POST">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label class="form-label" for="name">Your name or alias</label>
+                <input class="form-input" type="text" id="name" name="name"
+                       placeholder="e.g. AegeanGryphon" autocomplete="nickname"/>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="type">Submission type <span>*</span></label>
+                <select class="form-select" id="type" name="type" required>
+                  <option value="" disabled selected>Select a type…</option>
+                  <option value="bug">🐛 Bug Report</option>
+                  <option value="idea">💡 Mod Idea</option>
+                  <option value="other">💬 General Feedback</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="title">Title <span>*</span></label>
+                <input class="form-input" type="text" id="title" name="title"
+                       placeholder="Brief summary of the issue or idea" required/>
+              </div>
+
+              <div class="form-group form-group--full" id="mod-field">
+                <label class="form-label" for="mod">Related mod (if applicable)</label>
+                <select class="form-select" id="mod" name="mod">
+                  <option value="" selected>Not mod-specific / don't know</option>
+                  <option value="ScanIndicator">ScanIndicator</option>
+                  <option value="HoloboardHoloken">HoloboardHoloken</option>
+                  <option value="DualTypeHoloken">DualTypeHoloken</option>
+                  <option value="EvoScan">EvoScan</option>
+                  <option value="QuestRewardFix">QuestRewardFix</option>
+                  <option value="QuickCraft">QuickCraft</option>
+                  <option value="WeatherWheel">WeatherWheel (Beta)</option>
+                  <option value="Launcher">Launcher</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="description">Description <span>*</span></label>
+                <textarea class="form-textarea" id="description" name="description"
+                          placeholder="For bugs: what happened, what you expected, and steps to reproduce.&#10;For ideas: what you'd like and why it would improve the experience."
+                          style="min-height:160px;" required></textarea>
+              </div>
+
+              <div class="form-group form-group--full" id="repro-field">
+                <label class="form-label" for="repro">Steps to reproduce (bugs only)</label>
+                <textarea class="form-textarea" id="repro" name="repro"
+                          placeholder="1. Launch the game&#10;2. Load save file&#10;3. …"
+                          style="min-height:100px;"></textarea>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label class="form-label" for="version">Game version &amp; launcher version</label>
+                <input class="form-input" type="text" id="version" name="version"
+                       placeholder="e.g. Game 1.0.2, Launcher 1.0.2"/>
+              </div>
+
+            </div>
+
+            <div class="form-footer">
+              <p class="form-note">
+                Submissions are public on GitHub. Don't include personal info.
+              </p>
+              <button type="submit" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+                </svg>
+                Send Submission
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Alternate: direct GitHub link -->
+        <div style="margin-top:16px; padding:16px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+          <p style="font-size:0.875rem; color:var(--text-secondary);">
+            Prefer GitHub directly? Open an issue with full markdown support, screenshots, and file attachments.
+          </p>
+          <a href="https://github.com/AegeanGryphon/GryphonMods/issues/new/choose"
+             target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+            Open GitHub Issue ↗
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <div class="nav__logo-icon">🦅</div>
+          GryphonMods
+        </a>
+        <p>Fan-made mods and tools for LumenTale: Memories of Trey. Not affiliated with the developers.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mods.html">Mods</a></li>
+            <li><a href="submit.html">Submit</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>External</h4>
+          <ul>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/releases" target="_blank" rel="noopener">Releases</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/issues" target="_blank" rel="noopener">Issues</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 AegeanGryphon · GryphonMods · Fan project, not affiliated with any developer or publisher.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // Show/hide repro steps based on type
+  const typeSelect = document.getElementById('type');
+  const reproField = document.getElementById('repro-field');
+  if (typeSelect && reproField) {
+    typeSelect.addEventListener('change', () => {
+      reproField.style.display = typeSelect.value === 'bug' ? '' : 'none';
+    });
+    reproField.style.display = 'none'; // hidden by default
+  }
+</script>
+</body>
+</html>

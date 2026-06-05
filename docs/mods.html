@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mods — GryphonMods</title>
+  <meta name="description" content="Browse all available mods for LumenTale: Memories of Trey from GryphonMods."/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%238b6fff'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='18'>🦅</text></svg>"/>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────── -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-icon">🦅</div>
+      GryphonMods
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html"  class="nav__link" data-page="index.html">Home</a></li>
+      <li><a href="mods.html"   class="nav__link" data-page="mods.html">Mods</a></li>
+      <li><a href="submit.html" class="nav__link" data-page="submit.html">Submit</a></li>
+      <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a></li>
+    </ul>
+    <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="nav__cta" target="_blank" rel="noopener">
+      Download Launcher
+    </a>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html"  class="nav__link">Home</a>
+  <a href="mods.html"   class="nav__link active">Mods</a>
+  <a href="submit.html" class="nav__link">Submit</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="btn btn--primary" target="_blank" rel="noopener" style="margin-top:8px;">
+    Download Launcher
+  </a>
+</nav>
+
+<!-- ── Page Header ───────────────────────────────────────── -->
+<header class="page-header">
+  <div class="page-header__bg"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <p class="section-label">All Mods</p>
+    <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.2rem);">
+      Browse the <span class="gradient-text">collection</span>
+    </h1>
+    <p class="section-sub">
+      Hand-crafted enhancements for LumenTale: Memories of Trey. Install any of these
+      in one click using the GryphonMods Launcher.
+    </p>
+  </div>
+</header>
+
+<!-- ── Mods List ─────────────────────────────────────────── -->
+<section class="section" style="padding-top: 16px;">
+  <div class="container">
+
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="gameplay">Gameplay</button>
+      <button class="filter-btn" data-filter="qol">Quality of Life</button>
+      <button class="filter-btn" data-filter="bugfix">Bug Fixes</button>
+      <button class="filter-btn" data-filter="beta">Beta</button>
+    </div>
+
+    <div class="mods-grid">
+
+      <!-- ScanIndicator -->
+      <article class="mod-card reveal" data-tags="gameplay qol">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">🔬</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">ScanIndicator</h3>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--gameplay">Gameplay</span>
+            <span class="tag tag--qol">QoL</span>
+          </div>
+          <p class="mod-card__desc">
+            Displays scan-progress diamonds on battle animon cards showing your wiki knowledge
+            level at a glance. No more opening the wiki mid-battle just to check whether
+            you've already caught this one.
+          </p>
+          <div style="background:var(--bg-elevated); border-radius:var(--radius-sm); padding:12px 14px; margin:4px 0; font-size:0.8rem; color:var(--text-secondary); border:1px solid var(--border-subtle);">
+            <strong style="color:var(--text-primary);">v1.0.1 changelog:</strong> Fixed diamond positioning on single-enemy battle cards.
+          </div>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.1 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/ScanIndicator-v1.0.1"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- HoloboardHoloken -->
+      <article class="mod-card reveal reveal-delay-1" data-tags="gameplay">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">🛹</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">HoloboardHoloken</h3>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--gameplay">Gameplay</span>
+          </div>
+          <p class="mod-card__desc">
+            Allows you to throw your holoken while riding the holoboard. Stay mobile and engage
+            land animon without ever having to dismount. Full holoboard movement is preserved
+            throughout the throw.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/HoloboardHoloken-v1.0.0"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- DualTypeHoloken -->
+      <article class="mod-card reveal reveal-delay-2" data-tags="gameplay">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">⚡</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">DualTypeHoloken</h3>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--gameplay">Gameplay</span>
+          </div>
+          <p class="mod-card__desc">
+            Lets an animon's hidden secondary type activate matching elemental overworld objects,
+            not just the primary type. Unlocks the full potential of dual-type animon in the
+            overworld.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/DualTypeHoloken-v1.0.0"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EvoScan -->
+      <article class="mod-card reveal" data-tags="qol">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">📖</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">EvoScan</h3>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--qol">QoL</span>
+          </div>
+          <p class="mod-card__desc">
+            Automatically grants full research level 3 to an animon's evolved form when it
+            evolves. You worked to document it — you shouldn't lose that wiki data just because
+            it grew up.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/EvoScan-v1.0.0"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- QuestRewardFix -->
+      <article class="mod-card reveal reveal-delay-1" data-tags="bugfix">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">🐛</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">QuestRewardFix</h3>
+            <span class="tag tag--new">New</span>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--bugfix">Bug Fix</span>
+          </div>
+          <p class="mod-card__desc">
+            Fixes a vanilla bug introduced in the second hotfix patch where a completed secret
+            room quest re-completes four times on every save load, incorrectly granting 1,000
+            bonus EXP each session.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/QuestRewardFix-v1.0.0"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- QuickCraft -->
+      <article class="mod-card reveal reveal-delay-2" data-tags="qol">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">⚗️</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">QuickCraft</h3>
+            <span class="tag tag--new">New</span>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--qol">QoL</span>
+          </div>
+          <p class="mod-card__desc">
+            Dramatically speeds up fountain crafting. The vanilla game requires holding the
+            craft button for roughly one second per item. This mod reduces that to a fraction
+            of a second, making bulk crafting actually viable.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/QuickCraft-v1.0.0"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- WeatherWheel (Beta) -->
+      <article class="mod-card reveal" data-tags="gameplay beta">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">🌤️</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">WeatherWheel</h3>
+            <span class="tag tag--beta">Beta</span>
+          </div>
+          <div class="tags" style="margin-bottom:4px;">
+            <span class="tag tag--gameplay">Gameplay</span>
+          </div>
+          <p class="mod-card__desc">
+            Adds a radial weather selection wheel to the overworld. Press
+            <kbd style="background:var(--bg-elevated);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:0.8em;">C</kbd>
+            (or right stick click on controller) to open it, pick a weather, and it pins to the
+            current map. Story weather is detected and respected.
+          </p>
+          <div style="background:rgba(248,113,113,0.06); border:1px solid rgba(248,113,113,0.2); border-radius:var(--radius-sm); padding:10px 14px; font-size:0.8rem; color:#fca5a5; margin: 4px 0;">
+            ⚠️ Available to beta testers only via the launcher.
+          </div>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0 · AegeanGryphon</span>
+            <a href="https://github.com/AegeanGryphon/GryphonMods/releases/tag/WeatherWheel-v1.0.0"
+               target="_blank" rel="noopener" class="btn btn--ghost btn--sm">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Submit CTA ─────────────────────────────────────────── -->
+<section class="section--sm">
+  <div class="container">
+    <div class="download-card reveal" style="background: linear-gradient(135deg, rgba(139,111,255,0.08), rgba(34,211,238,0.04));">
+      <div class="download-card__info">
+        <h2>Got a mod idea?</h2>
+        <p>
+          See something missing? Found a bug? Submit a mod idea or bug report and it may
+          end up in the collection.
+        </p>
+      </div>
+      <div class="download-card__actions">
+        <a href="submit.html" class="btn btn--primary">Submit Idea or Bug →</a>
+        <a href="https://github.com/AegeanGryphon/GryphonMods/issues" target="_blank" rel="noopener"
+           class="btn btn--ghost">View GitHub Issues ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <div class="nav__logo-icon">🦅</div>
+          GryphonMods
+        </a>
+        <p>Fan-made mods and tools for LumenTale: Memories of Trey. Not affiliated with the developers.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mods.html">Mods</a></li>
+            <li><a href="submit.html">Submit</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>External</h4>
+          <ul>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/releases" target="_blank" rel="noopener">Releases</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/issues" target="_blank" rel="noopener">Issues</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 AegeanGryphon · GryphonMods · Fan project, not affiliated with any developer or publisher.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

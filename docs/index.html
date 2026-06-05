@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GryphonMods — Mods for LumenTale: Memories of Trey</title>
+  <meta name="description" content="Quality-of-life mods, bug fixes, and gameplay enhancements for LumenTale: Memories of Trey. One-click installation via the GryphonMods Launcher."/>
+  <meta property="og:title" content="GryphonMods"/>
+  <meta property="og:description" content="Quality-of-life mods and bug fixes for LumenTale: Memories of Trey."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://gryphonmods.com"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%238b6fff'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='18'>🦅</text></svg>"/>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────── -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-icon">🦅</div>
+      GryphonMods
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html"  class="nav__link" data-page="index.html">Home</a></li>
+      <li><a href="mods.html"   class="nav__link" data-page="mods.html">Mods</a></li>
+      <li><a href="submit.html" class="nav__link" data-page="submit.html">Submit</a></li>
+      <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a></li>
+    </ul>
+    <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="nav__cta" target="_blank" rel="noopener">
+      Download Launcher
+    </a>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html"  class="nav__link" data-page="index.html">Home</a>
+  <a href="mods.html"   class="nav__link" data-page="mods.html">Mods</a>
+  <a href="submit.html" class="nav__link" data-page="submit.html">Submit</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="btn btn--primary" target="_blank" rel="noopener" style="margin-top:8px;">
+    Download Launcher
+  </a>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__bg">
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+    <div class="hero__orb hero__orb--3"></div>
+    <div class="hero__grid"></div>
+  </div>
+  <div class="container">
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        Fan-made · Unofficial · Open source
+      </div>
+      <h1 class="hero__title">
+        Mods for<br>
+        <span class="gradient-text">LumenTale</span>
+      </h1>
+      <p class="hero__desc">
+        Quality-of-life improvements, bug fixes, and gameplay enhancements for
+        <em>LumenTale: Memories of Trey</em> — crafted to respect the original
+        vision while filling in the gaps.
+      </p>
+      <div class="hero__actions">
+        <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest"
+           class="btn btn--primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Download Launcher
+        </a>
+        <a href="mods.html" class="btn btn--ghost">
+          Browse Mods
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <div class="hero__scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ── Stats ─────────────────────────────────────────────── -->
+<section class="section--sm">
+  <div class="container">
+    <div class="stats reveal">
+      <div class="stat">
+        <div class="stat__number">7</div>
+        <div class="stat__label">Mods Available</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">1-click</div>
+        <div class="stat__label">Installation</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">Auto</div>
+        <div class="stat__label">Updates</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">Free</div>
+        <div class="stat__label">Always</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── What is GryphonMods ───────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;">
+      <div>
+        <p class="section-label reveal">About</p>
+        <h2 class="section-title reveal reveal-delay-1">
+          A better experience,<br>
+          <span class="gradient-text">by the community</span>
+        </h2>
+        <p class="section-sub reveal reveal-delay-2" style="margin-bottom:20px;">
+          LumenTale is a game worth loving deeper. GryphonMods started as a personal project
+          to fix small frustrations and grew into a curated collection of enhancements that
+          make a good game even better.
+        </p>
+        <p class="section-sub reveal reveal-delay-3" style="font-size:0.95rem;">
+          Every mod here is hand-crafted, thoroughly tested against the live game, and
+          designed to feel like something the developers could have shipped themselves —
+          no game-breaking cheats, no spoilers, just thoughtful improvements.
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon">🛠️</div>
+          <h3>Curated &amp; Maintained</h3>
+          <p>Every mod is hand-built and kept up to date as the game patches. Quality over quantity.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon">🚀</div>
+          <h3>One-Click Launcher</h3>
+          <p>The GryphonMods Launcher installs BepInEx, manages your mods, and keeps everything updated automatically.</p>
+        </div>
+        <div class="feature-card reveal reveal-delay-3">
+          <div class="feature-icon">🐛</div>
+          <h3>Bug Fixes Included</h3>
+          <p>Some mods exist purely to patch vanilla bugs the developers haven't addressed yet — no EXP glitches, no broken quests.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── How it Works ─────────────────────────────────────── -->
+<section class="section">
+  <div class="container" style="text-align:center;">
+    <p class="section-label reveal">How it works</p>
+    <h2 class="section-title reveal reveal-delay-1">Up and running in minutes</h2>
+    <p class="section-sub reveal reveal-delay-2" style="margin: 0 auto 64px;">
+      The launcher handles all the technical setup so you can focus on playing.
+    </p>
+    <div class="steps reveal reveal-delay-3">
+      <div class="step">
+        <div class="step__num">1</div>
+        <h3>Download Launcher</h3>
+        <p>Grab the latest release from GitHub. One small .exe — no installer required.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <h3>Detect Your Game</h3>
+        <p>The launcher finds LumenTale via Steam automatically, or you can point it manually.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <h3>Install BepInEx</h3>
+        <p>One click sets up the mod framework. The launcher handles the whole process.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">4</div>
+        <h3>Pick Your Mods</h3>
+        <p>Browse, install, and update mods from directly within the launcher. Done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Featured Mods ─────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:48px; flex-wrap:wrap; gap:16px;">
+      <div>
+        <p class="section-label reveal">Mods</p>
+        <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:0;">Featured releases</h2>
+      </div>
+      <a href="mods.html" class="btn btn--ghost reveal reveal-delay-2">View all mods →</a>
+    </div>
+    <div class="mods-grid">
+
+      <article class="mod-card reveal" data-tags="gameplay qol">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">🔬</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">ScanIndicator</h3>
+          </div>
+          <div class="tags">
+            <span class="tag tag--gameplay">Gameplay</span>
+            <span class="tag tag--qol">QoL</span>
+          </div>
+          <p class="mod-card__desc">
+            Displays scan-progress diamonds on battle animon cards showing your wiki knowledge
+            level at a glance — no need to open the wiki mid-battle.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.1</span>
+            <a href="mods.html" class="btn btn--ghost btn--sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod-card reveal reveal-delay-1" data-tags="gameplay">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">🛹</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">HoloboardHoloken</h3>
+          </div>
+          <div class="tags">
+            <span class="tag tag--gameplay">Gameplay</span>
+          </div>
+          <p class="mod-card__desc">
+            Allows you to throw your holoken while riding the holoboard. Stay mobile and
+            engage animon without ever dismounting.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0</span>
+            <a href="mods.html" class="btn btn--ghost btn--sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="mod-card reveal reveal-delay-2" data-tags="qol">
+        <div class="mod-card__image">
+          <div class="mod-card__placeholder">
+            <span class="mod-card__placeholder-icon">⚗️</span>
+          </div>
+        </div>
+        <div class="mod-card__body">
+          <div class="mod-card__header">
+            <h3 class="mod-card__title">QuickCraft</h3>
+            <span class="tag tag--new">New</span>
+          </div>
+          <div class="tags">
+            <span class="tag tag--qol">QoL</span>
+          </div>
+          <p class="mod-card__desc">
+            Dramatically speeds up fountain crafting. Each item crafts in a fraction of a
+            second — bulk crafting hundreds of items is now practical.
+          </p>
+          <div class="mod-card__footer">
+            <span class="mod-card__version">v1.0.0</span>
+            <a href="mods.html" class="btn btn--ghost btn--sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Disclaimer ────────────────────────────────────────── -->
+<section class="section--sm">
+  <div class="container">
+    <div class="disclaimer reveal">
+      <div class="disclaimer__icon">⚠️</div>
+      <div>
+        <div class="disclaimer__title">Unofficial Fan Project</div>
+        <div class="disclaimer__text">
+          GryphonMods is an <strong>independent fan project</strong> with no affiliation to the
+          developers or publishers of <em>LumenTale: Memories of Trey</em>. All mods are provided
+          as-is and may stop working following game updates. This project exists at the goodwill
+          of the developers and <strong>may be discontinued or removed at any time</strong> if
+          requested. Use at your own risk, and always keep a backup of your save files.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Download CTA ──────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="download-card reveal">
+      <div class="download-card__info">
+        <h2>Ready to get started?</h2>
+        <p>
+          The GryphonMods Launcher is the easiest way to manage your mods.
+          It handles BepInEx installation, mod management, and automatic updates —
+          all from one clean interface.
+        </p>
+      </div>
+      <div class="download-card__actions">
+        <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest"
+           class="btn btn--primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Download for Windows
+        </a>
+        <a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener"
+           class="btn btn--ghost">
+          View on GitHub ↗
+        </a>
+        <span class="download-version">Latest: v1.0.2 · Windows 10/11 x64</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <div class="nav__logo-icon">🦅</div>
+          GryphonMods
+        </a>
+        <p>Fan-made mods and tools for LumenTale: Memories of Trey. Not affiliated with the developers.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mods.html">Mods</a></li>
+            <li><a href="submit.html">Submit</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>External</h4>
+          <ul>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/releases" target="_blank" rel="noopener">Releases</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/issues" target="_blank" rel="noopener">Issues</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Game</h4>
+          <ul>
+            <li><a href="https://store.steampowered.com/app/2261430" target="_blank" rel="noopener">Steam Page ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 AegeanGryphon · GryphonMods · Fan project, not affiliated with any developer or publisher.</span>
+      <div class="footer__legal">
+        <a href="https://github.com/AegeanGryphon/GryphonMods/issues/new" target="_blank" rel="noopener">Report an issue</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
