@@ -47,7 +47,7 @@
       "author": "AegeanGryphon",
       "description": "Reduces time requirement for the click-to-hold button to 0.1 seconds.",
       "version": "1.0.0",
-      "fileName": "WeatherWheel.dll",
+      "fileName": "QuickCraft.dll",
       "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/QuickCraft-v1.0.0/QuickCraft.dll",
       "changelog": null
     },
@@ -57,7 +57,7 @@
       "author": "AegeanGryphon",
       "description": "A fix for the bug introduced in the 2nd hotfix patch released that triggers quest completion for the Secret Room quest multiple times upon save load.",
       "version": "1.0.0",
-      "fileName": "WeatherWheel.dll",
+      "fileName": "QuestRewardFix.dll",
       "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/QuestRewardFix-v1.0.0/QuestRewardFix.dll",
       "changelog": null
     }
