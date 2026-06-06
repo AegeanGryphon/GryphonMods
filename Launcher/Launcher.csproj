@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ApplicationIcon>launcher.ico</ApplicationIcon>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>LumenTaleLauncher</AssemblyName>
+    <RootNamespace>Launcher</RootNamespace>
+    <Version>1.0.2</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="launcher.ico"/>
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,103 @@
+<Window x:Class="Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LumenTale Launcher"
+        Icon="pack://application:,,,/launcher.ico"
+        Width="680" Height="480"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Effect>
+        <DropShadowEffect Color="#000000" BlurRadius="24" ShadowDepth="4" Opacity="0.7"/>
+    </Window.Effect>
+
+    <!-- Outer rounded border that clips everything -->
+    <Border CornerRadius="12"
+            Background="{StaticResource BrushBackground}"
+            ClipToBounds="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <!-- Custom title bar -->
+                <RowDefinition Height="32"/>
+                <!-- Content area -->
+                <RowDefinition Height="*"/>
+                <!-- Status bar -->
+                <RowDefinition Height="38"/>
+            </Grid.RowDefinitions>
+
+            <!-- ═══════════════ TITLE BAR ═══════════════ -->
+            <Border Grid.Row="0"
+                    Background="{StaticResource BrushSurface}"
+                    MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid>
+                    <TextBlock Text="LumenTale Launcher"
+                               Foreground="{StaticResource BrushTextMuted}"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               VerticalAlignment="Center"
+                               Margin="14,0,0,0"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <Button x:Name="BtnMinimize"
+                                Content="─"
+                                Style="{StaticResource BtnChrome}"
+                                Click="BtnMinimize_Click"/>
+                        <Button x:Name="BtnClose"
+                                Content="✕"
+                                Style="{StaticResource BtnClose}"
+                                Click="BtnClose_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- ═══════════════ CONTENT (swapped views) ═══════════════ -->
+            <ContentPresenter x:Name="MainContent"
+                              Grid.Row="1"/>
+
+            <!-- ═══════════════ STATUS BAR ═══════════════ -->
+            <Border Grid.Row="2"
+                    Background="{StaticResource BrushSurface}"
+                    BorderBrush="{StaticResource BrushBorder}"
+                    BorderThickness="0,1,0,0">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="14,0">
+
+                    <!-- BepInEx dot -->
+                    <Ellipse x:Name="DotBepInEx"
+                             Width="8" Height="8"
+                             Fill="{StaticResource BrushTextMuted}"
+                             VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TxtBepInExStatus"
+                               Text="BepInEx: unknown"
+                               Foreground="{StaticResource BrushTextMuted}"
+                               FontSize="11"
+                               VerticalAlignment="Center"
+                               Margin="6,0,0,0"/>
+
+                    <TextBlock Text=" | "
+                               Foreground="{StaticResource BrushBorder}"
+                               FontSize="11"
+                               VerticalAlignment="Center"
+                               Margin="8,0"/>
+
+                    <!-- Game dot -->
+                    <Ellipse x:Name="DotGame"
+                             Width="8" Height="8"
+                             Fill="{StaticResource BrushTextMuted}"
+                             VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TxtGameStatus"
+                               Text="Game: not found"
+                               Foreground="{StaticResource BrushTextMuted}"
+                               FontSize="11"
+                               VerticalAlignment="Center"
+                               Margin="6,0,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,326 @@
+<Application x:Class="Launcher.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <!-- ═══════════════════════════════════════════════
+             COLOR BRUSHES
+        ═══════════════════════════════════════════════ -->
+        <SolidColorBrush x:Key="BrushBackground"   Color="#0c0c18"/>
+        <SolidColorBrush x:Key="BrushSurface"      Color="#16162a"/>
+        <SolidColorBrush x:Key="BrushSurfaceHover" Color="#1e1e38"/>
+        <SolidColorBrush x:Key="BrushBorder"       Color="#2a2a4a"/>
+        <SolidColorBrush x:Key="BrushAccent"       Color="#8b5cf6"/>
+        <SolidColorBrush x:Key="BrushAccentHover"  Color="#7c3aed"/>
+        <SolidColorBrush x:Key="BrushAccentPress"  Color="#6d28d9"/>
+        <SolidColorBrush x:Key="BrushSuccess"      Color="#34d399"/>
+        <SolidColorBrush x:Key="BrushWarning"      Color="#f59e0b"/>
+        <SolidColorBrush x:Key="BrushError"        Color="#ef4444"/>
+        <SolidColorBrush x:Key="BrushTextPrimary"  Color="#76e8df"/>
+        <SolidColorBrush x:Key="BrushTextMuted"    Color="#8b8baf"/>
+        <SolidColorBrush x:Key="BrushInstall"      Color="#059669"/>
+        <SolidColorBrush x:Key="BrushInstallHover" Color="#047857"/>
+        <SolidColorBrush x:Key="BrushUpdate"       Color="#d97706"/>
+        <SolidColorBrush x:Key="BrushUpdateHover"  Color="#b45309"/>
+        <SolidColorBrush x:Key="BrushCloseHover"   Color="#dc2626"/>
+        <SolidColorBrush x:Key="BrushDisabled"     Color="#2a2a4a"/>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnPrimary
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnPrimary" TargetType="Button">
+            <Setter Property="Background"   Value="{StaticResource BrushAccent}"/>
+            <Setter Property="Foreground"   Value="{StaticResource BrushTextPrimary}"/>
+            <Setter Property="FontWeight"   Value="SemiBold"/>
+            <Setter Property="FontSize"     Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"       Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                Padding="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushAccentHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushAccentPress}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushDisabled}"/>
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextMuted}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnSecondary
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnSecondary" TargetType="Button">
+            <Setter Property="Background"      Value="{StaticResource BrushSurface}"/>
+            <Setter Property="Foreground"      Value="{StaticResource BrushTextPrimary}"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="FontSize"        Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush"     Value="{StaticResource BrushBorder}"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushSurfaceHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextMuted}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnInstall
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnInstall" TargetType="Button">
+            <Setter Property="Background"      Value="{StaticResource BrushInstall}"/>
+            <Setter Property="Foreground"      Value="{StaticResource BrushTextPrimary}"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding"         Value="12,5"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushInstallHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushDisabled}"/>
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextMuted}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnUpdate
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnUpdate" TargetType="Button">
+            <Setter Property="Background"      Value="{StaticResource BrushUpdate}"/>
+            <Setter Property="Foreground"      Value="{StaticResource BrushTextPrimary}"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding"         Value="12,5"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushUpdateHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushDisabled}"/>
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextMuted}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnChrome (title bar buttons)
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnChrome" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="Foreground"      Value="{StaticResource BrushTextMuted}"/>
+            <Setter Property="FontSize"        Value="13"/>
+            <Setter Property="Width"           Value="38"/>
+            <Setter Property="Height"          Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushBorder}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnClose (close button – red on hover)
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnClose" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="Foreground"      Value="{StaticResource BrushTextMuted}"/>
+            <Setter Property="FontSize"        Value="13"/>
+            <Setter Property="Width"           Value="38"/>
+            <Setter Property="Height"          Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushCloseHover}"/>
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextPrimary}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ═══════════════════════════════════════════════
+             BtnDanger (delete / destructive actions)
+        ═══════════════════════════════════════════════ -->
+        <Style x:Key="BtnDanger" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="Foreground"      Value="{StaticResource BrushError}"/>
+            <Setter Property="FontWeight"      Value="SemiBold"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush"     Value="{StaticResource BrushError}"/>
+            <Setter Property="Padding"         Value="10,5"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background"
+                                        Value="{StaticResource BrushError}"/>
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextPrimary}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Bd" Property="Background" Value="Transparent"/>
+                                <Setter TargetName="Bd" Property="BorderBrush"
+                                        Value="{StaticResource BrushDisabled}"/>
+                                <Setter Property="Foreground"
+                                        Value="{StaticResource BrushTextMuted}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Dark themed CheckBox -->
+        <Style x:Key="DarkCheckBox" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource BrushTextMuted}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border x:Name="Box" Width="14" Height="14" CornerRadius="3"
+                                    BorderThickness="1" BorderBrush="#4a4a7a"
+                                    Background="#16162a" Margin="0,0,7,0">
+                                <TextBlock x:Name="Check" Text="✓" FontSize="10" FontWeight="Bold"
+                                           Foreground="#8b5cf6" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" Visibility="Collapsed"/>
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Check" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#8b5cf6"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource BrushTextPrimary}"/>
+                                <Setter TargetName="Box" Property="BorderBrush" Value="#6a6a9a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Application.Resources>
+</Application>

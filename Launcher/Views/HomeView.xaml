@@ -1,0 +1,214 @@
+<UserControl x:Class="Launcher.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource BrushBackground}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!-- Header banner -->
+            <RowDefinition Height="90"/>
+            <!-- Update banner (collapsed when no update) -->
+            <RowDefinition x:Name="RowUpdate" Height="Auto"/>
+            <!-- Content -->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- ═══════════════ HEADER ═══════════════ -->
+        <Border Grid.Row="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#1e1b4b" Offset="0"/>
+                    <GradientStop Color="#0c0c18" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="LUMENTALE: MEMORIES OF TREY"
+                           Foreground="{StaticResource BrushTextPrimary}"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Mod Launcher"
+                           Foreground="{StaticResource BrushAccent}"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Margin="0,4,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- ═══════════════ UPDATE BANNER ═══════════════ -->
+        <Border x:Name="BannerUpdate"
+                Grid.Row="1"
+                Visibility="Collapsed"
+                Padding="14,8">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#1a3a1a" Offset="0"/>
+                    <GradientStop Color="#0c0c18" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <TextBlock x:Name="TxtUpdateAvailable"
+                           Foreground="{StaticResource BrushSuccess}"
+                           FontSize="12"
+                           VerticalAlignment="Center"/>
+                <Button x:Name="BtnUpdate"
+                        Content="⬆  Install &amp; Restart"
+                        Style="{StaticResource BtnInstall}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Click="BtnUpdate_Click"/>
+            </Grid>
+        </Border>
+
+        <!-- ═══════════════ CONTENT ═══════════════ -->
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Width="360"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,24,0,24">
+
+                <!-- PLAY MODDED -->
+                <Button x:Name="BtnPlay"
+                        Content="▶  PLAY MODDED"
+                        Style="{StaticResource BtnPrimary}"
+                        Height="54"
+                        FontSize="17"
+                        Click="BtnPlay_Click"/>
+
+                <!-- BepInEx warning -->
+                <TextBlock x:Name="TxtBepInExWarning"
+                           Text="⚠  BepInEx is not installed. Install it from Mod Management."
+                           Foreground="{StaticResource BrushWarning}"
+                           FontSize="11"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"
+                           Visibility="Collapsed"/>
+
+                <!-- MOD MANAGEMENT -->
+                <Button x:Name="BtnMods"
+                        Content="⚙  MOD MANAGEMENT"
+                        Style="{StaticResource BtnSecondary}"
+                        Height="42"
+                        Margin="0,12,0,0"
+                        Click="BtnMods_Click"/>
+
+                <!-- Locate Game Folder (shown when game not found) -->
+                <Button x:Name="BtnLocate"
+                        Content="📁  Locate Game Folder"
+                        Style="{StaticResource BtnSecondary}"
+                        Height="42"
+                        Margin="0,10,0,0"
+                        Visibility="Collapsed"
+                        Click="BtnLocate_Click"/>
+
+                <!-- Copy launcher path for Steam non-Steam game setup -->
+                <Button x:Name="BtnCopyPath"
+                        Content="📋  Copy Launcher Path for Steam"
+                        Style="{StaticResource BtnSecondary}"
+                        Height="36"
+                        FontSize="11"
+                        Margin="0,12,0,0"
+                        Click="BtnCopyPath_Click"/>
+
+                <!-- Console toggle -->
+                <CheckBox x:Name="ChkConsole"
+                          Content="Show BepInEx console while game is running"
+                          Style="{StaticResource DarkCheckBox}"
+                          HorizontalAlignment="Center"
+                          Margin="0,18,0,0"
+                          Checked="ChkConsole_Changed"
+                          Unchecked="ChkConsole_Changed"/>
+
+                <!-- ── Separator ─────────────────────────────── -->
+                <Rectangle Height="1"
+                           Fill="{StaticResource BrushBorder}"
+                           Margin="0,22,0,18"/>
+
+                <!-- ── Beta Access ───────────────────────────── -->
+                <TextBlock Text="BETA ACCESS"
+                           Foreground="{StaticResource BrushTextMuted}"
+                           FontSize="10"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8"/>
+
+                <!-- Status row (shows when beta is enabled) -->
+                <Border x:Name="BetaActiveRow"
+                        Visibility="Collapsed"
+                        Margin="0,0,0,8">
+                    <Grid>
+                        <TextBlock Text="✓  Beta access active"
+                                   Foreground="{StaticResource BrushSuccess}"
+                                   FontSize="12"
+                                   VerticalAlignment="Center"/>
+                        <Button x:Name="BtnDisableBeta"
+                                Content="Disable"
+                                Style="{StaticResource BtnChrome}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Padding="8,4"
+                                Width="Auto"
+                                Click="BtnDisableBeta_Click"/>
+                    </Grid>
+                </Border>
+
+                <!-- Token entry row (shows when beta is not enabled) -->
+                <Grid x:Name="BetaEntryRow">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="TxtBetaToken"
+                             Grid.Column="0"
+                             Height="32"
+                             Padding="8,0"
+                             FontSize="12"
+                             VerticalContentAlignment="Center"
+                             Background="#1e1e38"
+                             Foreground="{StaticResource BrushTextPrimary}"
+                             BorderBrush="{StaticResource BrushBorder}"
+                             BorderThickness="1"
+                             CaretBrush="{StaticResource BrushTextPrimary}"
+                             Text=""
+                             MaxLength="32"/>
+                    <Button x:Name="BtnActivateBeta"
+                            Grid.Column="2"
+                            Content="Activate"
+                            Style="{StaticResource BtnInstall}"
+                            Height="32"
+                            Padding="12,0"
+                            Click="BtnActivateBeta_Click"/>
+                </Grid>
+
+                <TextBlock x:Name="TxtBetaStatus"
+                           Foreground="{StaticResource BrushError}"
+                           FontSize="11"
+                           HorizontalAlignment="Center"
+                           Margin="0,6,0,0"
+                           Visibility="Collapsed"/>
+
+                <!-- ── Separator ─────────────────────────────── -->
+                <Rectangle Height="1"
+                           Fill="{StaticResource BrushBorder}"
+                           Margin="0,22,0,18"/>
+
+                <!-- Bug Report link -->
+                <TextBlock HorizontalAlignment="Center"
+                           FontSize="11">
+                    <Hyperlink x:Name="LinkBugReport"
+                               Foreground="{StaticResource BrushTextMuted}"
+                               RequestNavigate="LinkBugReport_Navigate"
+                               NavigateUri="https://github.com/AegeanGryphon/GryphonMods/issues/new?template=bug_report.md">
+                        🐛  Report a Bug
+                    </Hyperlink>
+                </TextBlock>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
