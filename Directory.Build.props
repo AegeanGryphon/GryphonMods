@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <GameDir>C:\Program Files (x86)\Steam\steamapps\common\LumenTale Memories of Trey</GameDir>
+    <!-- Prevent the .NET SDK from appending the git commit hash to ProductVersion,
+         which breaks the launcher's version comparison. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+</Project>
