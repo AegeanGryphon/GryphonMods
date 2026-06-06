@@ -52,6 +52,16 @@
       "changelog": null
     },
     {
+      "id": "lost-safeguard",
+      "name": "LostSafeguard",
+      "author": "AegeanGryphon",
+      "description": "Prevents Lost animon from being knocked out by pre-battle holoken splash damage. Lost animon always enter the battle with at least 1 HP — you still get to fight them.",
+      "version": "1.0.0",
+      "fileName": "LostSafeguard.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/LostSafeguard-v1.0.0/LostSafeguard.dll",
+      "changelog": null
+    },
+    {
       "id": "questrewardfix",
       "name": "QuestRewardFix",
       "author": "AegeanGryphon",
