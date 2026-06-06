@@ -180,20 +180,29 @@ public class LauncherUpdateService
 
         onProgress("Preparing updater…");
 
+        var logPath = Path.Combine(Path.GetTempPath(), "LumenTaleLauncher_update.log");
+
         // Plain raw string — PowerShell's $, { } are NOT interpolated by C#.
         // Values are passed as named parameters when launching powershell.exe.
         var script = """
-            param([int]$Pid, [string]$Zip, [string]$Dir, [string]$Exe)
-            $p = Get-Process -Id $Pid -ErrorAction SilentlyContinue
-            while ($p -and !$p.HasExited) {
-                Start-Sleep -Milliseconds 300
-                $p = Get-Process -Id $Pid -ErrorAction SilentlyContinue
+            param([int]$LauncherPid, [string]$Zip, [string]$Dir, [string]$Exe, [string]$Log)
+            try {
+                Add-Content $Log "Waiting for process $LauncherPid to exit..."
+                $p = Get-Process -Id $LauncherPid -ErrorAction SilentlyContinue
+                while ($p -and !$p.HasExited) {
+                    Start-Sleep -Milliseconds 300
+                    $p = Get-Process -Id $LauncherPid -ErrorAction SilentlyContinue
+                }
+                Start-Sleep -Seconds 1
+                Add-Content $Log "Extracting $Zip to $Dir..."
+                Expand-Archive -Path $Zip -DestinationPath $Dir -Force
+                Add-Content $Log "Extraction complete. Launching $Exe..."
+                Start-Process -FilePath (Join-Path $Dir $Exe)
+                Remove-Item $Zip -Force -ErrorAction SilentlyContinue
+                Add-Content $Log "Done."
+            } catch {
+                Add-Content $Log "ERROR: $_"
             }
-            Start-Sleep -Seconds 1
-            Add-Type -AssemblyName System.IO.Compression.FileSystem
-            [System.IO.Compression.ZipFile]::ExtractToDirectory($Zip, $Dir, $true)
-            Start-Process -FilePath (Join-Path $Dir $Exe)
-            Remove-Item $Zip  -Force -ErrorAction SilentlyContinue
             Remove-Item $MyInvocation.MyCommand.Path -Force -ErrorAction SilentlyContinue
             """;
 
@@ -201,16 +210,18 @@ public class LauncherUpdateService
 
         onProgress("Launching updater — restarting…");
 
+        // UseShellExecute=true creates a fully detached process so it isn't
+        // torn down when the launcher (parent) exits.
         Process.Start(new ProcessStartInfo
         {
             FileName        = "powershell.exe",
-            Arguments       = $"-ExecutionPolicy Bypass -File \"{scriptPath}\" " +
-                              $"-Pid {Environment.ProcessId} " +
+            Arguments       = $"-ExecutionPolicy Bypass -WindowStyle Hidden -File \"{scriptPath}\" " +
+                              $"-LauncherPid {Environment.ProcessId} " +
                               $"-Zip \"{staged.ZipPath}\" " +
                               $"-Dir \"{exeDir}\" " +
-                              $"-Exe \"{exeName}\"",
-            UseShellExecute = false,
-            CreateNoWindow  = true,
+                              $"-Exe \"{exeName}\" " +
+                              $"-Log \"{logPath}\"",
+            UseShellExecute = true,
             WindowStyle     = ProcessWindowStyle.Hidden
         });
     }
