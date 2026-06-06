@@ -80,6 +80,55 @@ filterBtns.forEach(btn => {
   });
 });
 
+// ── Manifest-driven version badges ──────────────────────────
+(async () => {
+  const cards = document.querySelectorAll('[data-mod-id]');
+  if (!cards.length) return;
+
+  try {
+    const res = await fetch(
+      'https://raw.githubusercontent.com/AegeanGryphon/GryphonMods/main/manifest.json',
+      { cache: 'no-cache' }
+    );
+    if (!res.ok) return;
+    const { mods } = await res.json();
+
+    cards.forEach(card => {
+      const mod = mods.find(m => m.id === card.dataset.modId);
+      if (!mod) return;
+
+      // Version badge  (index: "v1.0.1"  |  mods: "v1.0.1 · AegeanGryphon")
+      const versionEl = card.querySelector('.mod-card__version');
+      if (versionEl) {
+        const hasAuthor = versionEl.textContent.includes('·');
+        versionEl.textContent = hasAuthor
+          ? `v${mod.version} · ${mod.author}`
+          : `v${mod.version}`;
+      }
+
+      // GitHub release link
+      const githubLink = card.querySelector('a[href*="releases/tag"]');
+      if (githubLink) {
+        githubLink.href =
+          `https://github.com/AegeanGryphon/GryphonMods/releases/tag/${mod.name}-v${mod.version}`;
+      }
+
+      // Changelog box (mods.html only — element has data-mod-changelog attribute)
+      if (mod.changelog) {
+        const changelogEl = card.querySelector('[data-mod-changelog]');
+        if (changelogEl) {
+          // Strip leading **vX.Y.Z** — prefix that markdown bold wraps
+          const text = mod.changelog.replace(/^\*\*v[\d.]+\*\*\s*—\s*/, '');
+          changelogEl.innerHTML =
+            `<strong style="color:var(--text-primary);">v${mod.version} changelog:</strong> ${text}`;
+        }
+      }
+    });
+  } catch {
+    // Silently fail — static version text in HTML remains visible
+  }
+})();
+
 // ── Form submission (Formspree) ──────────────────────────────
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
