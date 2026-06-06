@@ -16,10 +16,10 @@
       "name": "HoloboardHoloken",
       "author": "AegeanGryphon",
       "description": "Allows you to throw your holoken while riding the holoboard. Stay mobile!",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "fileName": "HoloboardHoloken.dll",
-      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/HoloboardHoloken-v1.0.0/HoloboardHoloken.dll",
-      "changelog": null
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/HoloboardHoloken-v1.0.1/HoloboardHoloken.dll",
+      "changelog": "**v1.0.1** — Water animon encounters now work correctly while on the holoboard: attack mode triggers mid-flight, bilia mode triggers the slow-time QTE mid-flight with full rendering above the water surface."
     },
     {
       "id": "dual-type-holoken",
