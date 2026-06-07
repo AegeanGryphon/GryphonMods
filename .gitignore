@@ -1,0 +1,24 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+packages/
+
+# DevTools — local-only dev tool, intentionally not published
+DevTools/
+
+# OS
+.DS_Store
+Thumbs.db
