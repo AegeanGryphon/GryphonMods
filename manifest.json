@@ -72,6 +72,16 @@
       "changelog": null
     },
     {
+      "id": "binder-spawn",
+      "name": "BinderSpawn",
+      "author": "AegeanGryphon",
+      "description": "Filters overworld spawns based on animon cards placed in your Manual card binder. Only matching animon spawn in each area — if none of the cards in your binder match the area's spawns, those filters are suppressed. If the binder is empty, normal spawning is restored.",
+      "version": "1.0.0",
+      "fileName": "BinderSpawn.dll",
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/BinderSpawn-v1.0.0/BinderSpawn.dll",
+      "changelog": null
+    },
+    {
       "id": "questrewardfix",
       "name": "QuestRewardFix",
       "author": "AegeanGryphon",
