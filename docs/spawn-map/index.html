@@ -9409,10 +9409,17 @@ function renderOverlay() {
   voidCanvas.height = dispH;
   const voidCtx = voidCanvas.getContext('2d');
   voidCtx.drawImage(img, 0, 0, dispW, dispH);
+  // Read all pixels once up front — vastly faster than one getImageData call per dot
+  let voidPixels = null;
+  try { voidPixels = voidCtx.getImageData(0, 0, dispW, dispH).data; } catch(e) {}
   function isVoid(px, py) {
     const ix = Math.round(px), iy = Math.round(py);
     if (ix < 0 || iy < 0 || ix >= dispW || iy >= dispH) return true;
     try {
+      if (voidPixels) {
+        const i = (iy * dispW + ix) * 4;
+        return (voidPixels[i] + voidPixels[i+1] + voidPixels[i+2]) < 60;
+      }
       const d = voidCtx.getImageData(ix, iy, 1, 1).data;
       // Void is near-black; any real map pixel has meaningful brightness
       return (d[0] + d[1] + d[2]) < 60;
@@ -9454,7 +9461,7 @@ function renderOverlay() {
 }
 
 // ── Tooltip ───────────────────────────────────────────────────────────────────
-const ICON_BASE = 'animon icons/';
+const ICON_BASE = 'animon-icons/';
 // Maps base species name → icon filename stem when it differs from the species name
 const ICON_NAME_MAP = {
   // variant forms — pick a representative
