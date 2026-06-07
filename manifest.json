@@ -76,10 +76,10 @@
       "name": "BinderSpawn",
       "author": "AegeanGryphon",
       "description": "Filters overworld spawns based on animon cards placed in your Manual card binder. Only matching animon spawn in each area — if none of the cards in your binder match the area's spawns, those filters are suppressed. If the binder is empty, normal spawning is restored.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "fileName": "BinderSpawn.dll",
-      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/BinderSpawn-v1.0.0/BinderSpawn.dll",
-      "changelog": null
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/BinderSpawn-v1.0.1/BinderSpawn.dll",
+      "changelog": "**v1.0.1** — Fixed spawning for animon with multiple forms (e.g. Minube): placing any form card now covers all regional/variant encounter entries in the area."
     },
     {
       "id": "questrewardfix",
