@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Type Chart — GryphonMods</title>
+  <meta name="description" content="Interactive elemental and emotional type effectiveness chart for LumenTale: Memories of Trey, extracted directly from the game."/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%238b6fff'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='18'>🦅</text></svg>"/>
+  <style>
+    /* ── Page-specific styles ───────────────────────────── */
+    .tc-hero {
+      padding: calc(var(--nav-height) + 48px) 0 48px;
+      text-align: center;
+    }
+    .tc-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 12px; }
+    .tc-hero p  { color: var(--text-secondary); max-width: 520px; margin: 0 auto; font-size: 1rem; }
+
+    /* ── Tab switcher ───────────────────────────────────── */
+    .tc-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 40px 0 32px;
+    }
+    .tc-tab {
+      padding: 9px 24px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: all 0.2s var(--ease-smooth);
+      cursor: pointer;
+    }
+    .tc-tab:hover  { border-color: var(--border-hover); color: var(--text-primary); }
+    .tc-tab.active { background: var(--accent-purple); border-color: var(--accent-purple); color: #fff; }
+
+    /* ── Controls ───────────────────────────────────────── */
+    .tc-controls {
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+    .tc-search-wrap {
+      position: relative;
+    }
+    .tc-search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: var(--text-muted);
+      pointer-events: none;
+    }
+    #tc-search {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    #tc-search:focus  { border-color: var(--border-hover); }
+    #tc-search::placeholder { color: var(--text-muted); }
+
+    #tc-dropdown {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      z-index: 50;
+      display: none;
+      box-shadow: var(--shadow-card);
+    }
+    #tc-dropdown.open { display: block; }
+    .tc-option {
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      color: var(--text-secondary);
+    }
+    .tc-option:hover, .tc-option.focused {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+    }
+    .tc-option mark {
+      background: none;
+      color: var(--accent-purple);
+      font-weight: 600;
+    }
+
+    /* ── Selected type badge ────────────────────────────── */
+    .tc-selected-badge {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+    .tc-selected-badge.visible { display: flex; }
+    .tc-selected-badge span { font-weight: 600; font-size: 0.95rem; }
+    .tc-selected-badge .tc-clear {
+      margin-left: auto;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      transition: all 0.15s;
+    }
+    .tc-clear:hover { color: var(--text-primary); border-color: var(--border-hover); }
+
+    /* ── Results list ───────────────────────────────────── */
+    .tc-results {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .tc-placeholder {
+      text-align: center;
+      padding: 48px 0;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .tc-placeholder svg {
+      width: 40px; height: 40px;
+      stroke: var(--text-muted);
+      margin: 0 auto 12px;
+      display: block;
+      opacity: 0.4;
+    }
+
+    .tc-group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 28px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .tc-group-label:first-child { margin-top: 0; }
+
+    .tc-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      margin-bottom: 6px;
+      transition: border-color 0.15s;
+    }
+    .tc-row:hover { border-color: var(--border); }
+
+    .tc-type-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      min-width: 90px;
+    }
+
+    .tc-bar-wrap {
+      flex: 1;
+      height: 8px;
+      background: var(--bg-elevated);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .tc-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s var(--ease-smooth);
+    }
+
+    .tc-pill {
+      min-width: 80px;
+      text-align: center;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* Multiplier colour tokens */
+    .mv-immune  { --c-bg: rgba(88,28,135,0.3); --c-text: #c084fc; --c-bar: #7c3aed; }
+    .mv-weak    { --c-bg: rgba(127,29,29,0.3); --c-text: #f87171; --c-bar: #dc2626; }
+    .mv-neutral { --c-bg: rgba(30,30,60,0.6);  --c-text: #6b7280; --c-bar: #374151; }
+    .mv-super   { --c-bg: rgba(6,78,59,0.4);   --c-text: #34d399; --c-bar: #059669; }
+    /* emo range */
+    .mv-emo-weak  { --c-bg: rgba(120,53,15,0.35); --c-text: #fb923c; --c-bar: #ea580c; }
+    .mv-emo-super { --c-bg: rgba(6,78,59,0.4);    --c-text: #34d399; --c-bar: #059669; }
+
+    .tc-pill  { background: var(--c-bg); color: var(--c-text); }
+    .tc-bar   { background: var(--c-bar); }
+
+    /* bar widths for each multiplier */
+    .bw-0    { width: 4%; }
+    .bw-033  { width: 22%; }
+    .bw-08   { width: 53%; }
+    .bw-1    { width: 66%; }
+    .bw-12   { width: 80%; }
+    .bw-15   { width: 100%; }
+
+    /* ── Legend ─────────────────────────────────────────── */
+    .tc-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 0 auto 48px;
+      max-width: 560px;
+    }
+    .tc-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+    .tc-legend-pill {
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .tc-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin: 32px 0 0;
+      padding-bottom: 48px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────────── -->
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav__inner">
+    <a href="index.html" class="nav__logo">
+      <div class="nav__logo-icon">🦅</div>
+      GryphonMods
+    </a>
+    <ul class="nav__links" role="list">
+      <li><a href="index.html"     class="nav__link" data-page="index.html">Home</a></li>
+      <li><a href="mods.html"      class="nav__link" data-page="mods.html">Mods</a></li>
+      <li><a href="typechart.html" class="nav__link nav__link--active" data-page="typechart.html">Type Chart</a></li>
+      <li><a href="submit.html"    class="nav__link" data-page="submit.html">Submit</a></li>
+      <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a></li>
+    </ul>
+    <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="nav__cta" target="_blank" rel="noopener">
+      Download Launcher
+    </a>
+    <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav__mobile" aria-label="Mobile navigation">
+  <a href="index.html"     class="nav__link" data-page="index.html">Home</a>
+  <a href="mods.html"      class="nav__link" data-page="mods.html">Mods</a>
+  <a href="typechart.html" class="nav__link" data-page="typechart.html">Type Chart</a>
+  <a href="submit.html"    class="nav__link" data-page="submit.html">Submit</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener" class="nav__link">GitHub ↗</a>
+  <a href="https://github.com/AegeanGryphon/GryphonMods/releases/latest" class="btn btn--primary" target="_blank" rel="noopener" style="margin-top:8px;">
+    Download Launcher
+  </a>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────────── -->
+<section class="tc-hero">
+  <div class="container">
+    <p class="section-label">Reference</p>
+    <h1 class="tc-hero h1">
+      <span class="gradient-text">Type Chart</span>
+    </h1>
+    <p>Select an attacking type to see how it fares against every defending type. Data extracted directly from the game at runtime.</p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- ── Tabs ──────────────────────────────────────────────── -->
+  <div class="tc-tabs">
+    <button class="tc-tab active" data-chart="ele">⚡ Elemental</button>
+    <button class="tc-tab"        data-chart="emo">💜 Emotional</button>
+  </div>
+
+  <!-- ── Search / dropdown ─────────────────────────────────── -->
+  <div class="tc-controls">
+    <div class="tc-search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input id="tc-search" type="text" placeholder="Search or select an attacking type…" autocomplete="off" spellcheck="false"/>
+      <div id="tc-dropdown" role="listbox"></div>
+    </div>
+    <div class="tc-selected-badge" id="tc-badge">
+      <span id="tc-badge-text"></span>
+      <button class="tc-clear" id="tc-clear">✕ Clear</button>
+    </div>
+  </div>
+
+  <!-- ── Legend ────────────────────────────────────────────── -->
+  <div class="tc-legend" id="tc-legend"></div>
+
+  <!-- ── Results ───────────────────────────────────────────── -->
+  <div class="tc-results" id="tc-results">
+    <div class="tc-placeholder" id="tc-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      Search for a type above to see its matchups
+    </div>
+  </div>
+
+  <p class="tc-note" id="tc-note"></p>
+
+</div>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="nav__logo">
+          <div class="nav__logo-icon">🦅</div>
+          GryphonMods
+        </a>
+        <p>Fan-made mods and tools for LumenTale: Memories of Trey. Not affiliated with the developers.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="mods.html">Mods</a></li>
+            <li><a href="typechart.html">Type Chart</a></li>
+            <li><a href="submit.html">Submit</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>External</h4>
+          <ul>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/releases" target="_blank" rel="noopener">Releases</a></li>
+            <li><a href="https://github.com/AegeanGryphon/GryphonMods/issues" target="_blank" rel="noopener">Issues</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Game</h4>
+          <ul>
+            <li><a href="https://store.steampowered.com/app/2261430" target="_blank" rel="noopener">Steam Page ↗</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 AegeanGryphon · GryphonMods · Fan project, not affiliated with any developer or publisher.</span>
+      <div class="footer__legal">
+        <a href="https://github.com/AegeanGryphon/GryphonMods/issues/new" target="_blank" rel="noopener">Report an issue</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+// ════════════════════════════════════════════════════════════════
+// Type Chart data & logic
+// ════════════════════════════════════════════════════════════════
+
+const ELE_TYPES = [
+  "CHAKRA","ELECTRIC","AURA","ANOMALOUS","GEO","VIRUS",
+  "ICE","ANCIENT","FIRE","DEMON","WATER","DATA","GRASS"
+];
+const EMO_TYPES = ["SEREUM","FELICIS","HORRENS","FUROR","MESTUS"];
+
+// Row = attacking, Col = defending  (same order as ELE_TYPES / EMO_TYPES)
+const ELE_DATA = [
+  [1, 0.3333, 1, 0.3333, 1.5, 0.3333, 1, 1, 1, 1.5, 1, 0.3333, 1],
+  [1, 1, 1.5, 1, 0.3333, 1, 0.3333, 1, 1, 1, 1.5, 1.5, 0.3333],
+  [1.5, 0.3333, 1, 1, 0.3333, 0, 1, 1, 1, 1.5, 1, 1, 1.5],
+  [1.5, 1, 0.3333, 0.3333, 1, 1.5, 1, 1, 1.5, 0.3333, 1, 1, 1],
+  [0.3333, 1.5, 1, 1, 1, 1.5, 1, 1, 1.5, 1, 0.3333, 1, 0.3333],
+  [1.5, 1, 1, 0.3333, 0, 0.3333, 0.3333, 0.3333, 1, 1, 1, 1.5, 1.5],
+  [1, 1, 1.5, 1, 0.3333, 1, 1, 1.5, 0.3333, 1, 0.3333, 0.3333, 1.5],
+  [1, 1, 1, 1.5, 0.3333, 1.5, 0.3333, 1, 1, 1.5, 1, 0.3333, 1],
+  [0.3333, 1, 1, 1, 0.3333, 1, 1.5, 1, 1, 0.3333, 0.3333, 1.5, 1.5],
+  [0.3333, 1, 1.5, 1.5, 1, 0, 1, 0.3333, 1.5, 1, 1, 1, 1],
+  [0.3333, 0.3333, 1, 1, 1.5, 1, 1, 1, 1.5, 1, 1, 1, 0.3333],
+  [1, 0.3333, 1, 1, 1, 0.3333, 1.5, 1.5, 0.3333, 1, 1, 1.5, 1],
+  [0.3333, 1, 0.3333, 1, 1.5, 1, 1, 1.5, 0.3333, 1, 1.5, 1, 1],
+];
+const EMO_DATA = [
+  [1, 1.2, 1.2, 1, 0.8],
+  [1.2, 1, 0.8, 0.8, 1.2],
+  [0.8, 1, 1, 1.2, 1.2],
+  [0.8, 1.2, 1.2, 1, 1],
+  [1.2, 0.8, 1, 1.2, 1],
+];
+
+// ── Legend config ────────────────────────────────────────────────
+const ELE_LEGEND = [
+  { cls: "mv-super",   label: "1.5×", desc: "Super Effective" },
+  { cls: "mv-neutral", label: "1×",   desc: "Neutral"         },
+  { cls: "mv-weak",    label: "⅓×",   desc: "Not Very Effective" },
+  { cls: "mv-immune",  label: "0×",   desc: "No Effect"       },
+];
+const EMO_LEGEND = [
+  { cls: "mv-emo-super", label: "1.2×", desc: "Super Effective"    },
+  { cls: "mv-neutral",   label: "1×",   desc: "Neutral"            },
+  { cls: "mv-emo-weak",  label: "0.8×", desc: "Not Very Effective" },
+];
+
+// ── State ────────────────────────────────────────────────────────
+let activeChart  = "ele";   // "ele" | "emo"
+let selectedType = null;    // string | null
+
+// ── Helpers ──────────────────────────────────────────────────────
+function currentTypes()  { return activeChart === "ele" ? ELE_TYPES : EMO_TYPES; }
+function currentData()   { return activeChart === "ele" ? ELE_DATA  : EMO_DATA;  }
+function currentLegend() { return activeChart === "ele" ? ELE_LEGEND : EMO_LEGEND; }
+
+function eleMetaFor(v) {
+  if (v === 0)    return { cls: "mv-immune",  bw: "bw-0",   label: "0×   Immune"           };
+  if (v < 0.5)    return { cls: "mv-weak",    bw: "bw-033", label: "⅓×   Not Very Effective" };
+  if (v === 1)    return { cls: "mv-neutral", bw: "bw-1",   label: "1×   Neutral"           };
+                  return { cls: "mv-super",   bw: "bw-15",  label: "1.5× Super Effective"   };
+}
+function emoMetaFor(v) {
+  if (v < 1)    return { cls: "mv-emo-weak",  bw: "bw-08", label: "0.8× Not Very Effective" };
+  if (v === 1)  return { cls: "mv-neutral",   bw: "bw-1",  label: "1×   Neutral"            };
+                return { cls: "mv-emo-super", bw: "bw-12", label: "1.2× Super Effective"    };
+}
+function metaFor(v) {
+  return activeChart === "ele" ? eleMetaFor(v) : emoMetaFor(v);
+}
+
+// ── Render legend ────────────────────────────────────────────────
+function renderLegend() {
+  const el = document.getElementById("tc-legend");
+  el.innerHTML = currentLegend().map(item => `
+    <div class="tc-legend-item">
+      <span class="tc-legend-pill tc-pill ${item.cls}">${item.label}</span>
+      ${item.desc}
+    </div>`).join("");
+}
+
+// ── Render results ───────────────────────────────────────────────
+function renderResults() {
+  const results = document.getElementById("tc-results");
+  const note    = document.getElementById("tc-note");
+
+  if (!selectedType) {
+    results.innerHTML = `<div class="tc-placeholder" id="tc-placeholder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      Search for a type above to see its matchups
+    </div>`;
+    note.textContent = "";
+    return;
+  }
+
+  const types  = currentTypes();
+  const data   = currentData();
+  const atkIdx = types.indexOf(selectedType);
+  if (atkIdx === -1) return;
+  const row = data[atkIdx];
+
+  // Group by effectiveness
+  const groups = {
+    super:   [],
+    neutral: [],
+    weak:    [],
+    immune:  [],
+  };
+  types.forEach((type, i) => {
+    const v = row[i];
+    if (v === 0)        groups.immune.push({ type, v });
+    else if (v < 0.5)   groups.weak.push({ type, v });
+    else if (v === 1)   groups.neutral.push({ type, v });
+    else if (v > 1)     groups.super.push({ type, v });
+    else                groups.weak.push({ type, v });  // 0.8
+  });
+
+  // Also handle emo "weak" (0.8)
+  if (activeChart === "emo") {
+    groups.weak = groups.weak.filter(x => x.v < 1);
+  }
+
+  const groupDefs = [
+    { key: "super",   label: "Super Effective",     show: true },
+    { key: "neutral", label: "Neutral",              show: true },
+    { key: "weak",    label: "Not Very Effective",   show: true },
+    { key: "immune",  label: "No Effect — Immune",   show: activeChart === "ele" },
+  ];
+
+  let html = "";
+  groupDefs.forEach(({ key, label, show }) => {
+    if (!show || groups[key].length === 0) return;
+    html += `<div class="tc-group-label">${label}</div>`;
+    groups[key].forEach(({ type, v }) => {
+      const m = metaFor(v);
+      html += `
+        <div class="tc-row">
+          <span class="tc-type-name">${type}</span>
+          <div class="tc-bar-wrap">
+            <div class="tc-bar ${m.cls} ${m.bw}"></div>
+          </div>
+          <span class="tc-pill ${m.cls}">${activeChart === "ele"
+            ? (v === 0 ? "0×" : v < 0.5 ? "⅓×" : v === 1 ? "1×" : "1.5×")
+            : v + "×"
+          }</span>
+        </div>`;
+    });
+  });
+
+  results.innerHTML = html;
+  note.textContent = `Attacking: ${selectedType} · ${types.length} defending types shown · Data extracted from game v1.0`;
+}
+
+// ── Dropdown ─────────────────────────────────────────────────────
+const searchEl   = document.getElementById("tc-search");
+const dropEl     = document.getElementById("tc-dropdown");
+const badgeEl    = document.getElementById("tc-badge");
+const badgeText  = document.getElementById("tc-badge-text");
+
+let focusedIdx = -1;
+
+function buildDropdown(filter) {
+  const types = currentTypes();
+  const q = filter.trim().toUpperCase();
+  const matches = q
+    ? types.filter(t => t.includes(q))
+    : types;
+
+  if (matches.length === 0) {
+    dropEl.innerHTML = `<div class="tc-option" style="color:var(--text-muted);cursor:default;">No matches</div>`;
+  } else {
+    dropEl.innerHTML = matches.map(t => {
+      const hi = q
+        ? t.replace(q, `<mark>${q}</mark>`)
+        : t;
+      return `<div class="tc-option" role="option" data-type="${t}">${hi}</div>`;
+    }).join("");
+  }
+  focusedIdx = -1;
+}
+
+function openDropdown() {
+  buildDropdown(searchEl.value);
+  dropEl.classList.add("open");
+}
+
+function closeDropdown() {
+  dropEl.classList.remove("open");
+  focusedIdx = -1;
+}
+
+function selectType(type) {
+  selectedType = type;
+  searchEl.value = "";
+  closeDropdown();
+  badgeText.textContent = `Attacking: ${type}`;
+  badgeEl.classList.add("visible");
+  renderResults();
+}
+
+function clearSelection() {
+  selectedType = null;
+  badgeEl.classList.remove("visible");
+  renderResults();
+}
+
+searchEl.addEventListener("focus", openDropdown);
+searchEl.addEventListener("input", () => {
+  openDropdown();
+});
+searchEl.addEventListener("blur", () => {
+  setTimeout(closeDropdown, 150);
+});
+
+searchEl.addEventListener("keydown", e => {
+  const opts = dropEl.querySelectorAll(".tc-option[data-type]");
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    focusedIdx = Math.min(focusedIdx + 1, opts.length - 1);
+    opts.forEach((o, i) => o.classList.toggle("focused", i === focusedIdx));
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    focusedIdx = Math.max(focusedIdx - 1, 0);
+    opts.forEach((o, i) => o.classList.toggle("focused", i === focusedIdx));
+  } else if (e.key === "Enter") {
+    if (focusedIdx >= 0 && opts[focusedIdx]) {
+      selectType(opts[focusedIdx].dataset.type);
+    } else if (opts.length === 1) {
+      selectType(opts[0].dataset.type);
+    }
+  } else if (e.key === "Escape") {
+    closeDropdown();
+  }
+});
+
+dropEl.addEventListener("mousedown", e => {
+  const opt = e.target.closest(".tc-option[data-type]");
+  if (opt) selectType(opt.dataset.type);
+});
+
+document.getElementById("tc-clear").addEventListener("click", clearSelection);
+
+// ── Tab switching ─────────────────────────────────────────────────
+document.querySelectorAll(".tc-tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tc-tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeChart = btn.dataset.chart;
+    selectedType = null;
+    searchEl.value = "";
+    badgeEl.classList.remove("visible");
+    renderLegend();
+    renderResults();
+    searchEl.placeholder = activeChart === "ele"
+      ? "Search or select an attacking type…"
+      : "Search or select an emotional type…";
+  });
+});
+
+// ── Init ──────────────────────────────────────────────────────────
+renderLegend();
+renderResults();
+</script>
+</body>
+</html>
