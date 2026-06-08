@@ -66,10 +66,10 @@
       "name": "CraftAnywhere",
       "author": "AegeanGryphon",
       "description": "Press **F1** (or **D-pad Up** on controller) to open the Magic Fountain crafting menu from anywhere in the overworld — no fountain required.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "fileName": "CraftAnywhere.dll",
-      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/CraftAnywhere-v1.0.0/CraftAnywhere.dll",
-      "changelog": null
+      "downloadUrl": "https://github.com/AegeanGryphon/GryphonMods/releases/download/CraftAnywhere-v1.0.1/CraftAnywhere.dll",
+      "changelog": "**v1.0.1** — Fixed: crafting menu can no longer be opened while a shop, dialogue, or other menu is already active."
     },
     {
       "id": "questrewardfix",
